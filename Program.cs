@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
 using static System.Console;
 
 namespace Chess
@@ -8,7 +9,8 @@ namespace Chess
     {
         static void Main(string[] args)
         {
-            Posicao posicao = new Posicao(3, 4);
+            Tabuleiro tab = new Tabuleiro(8, 8);
+            Tela.ImprimirTabuleiro(tab);
         }
     }
 }
