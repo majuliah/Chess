@@ -18,27 +18,32 @@ namespace Chess
                     try
                     { 
                         Clear();    
-                        Tela.ImprimirTabuleiro(partida.tab);
+                        Tela.ImprimirPartida(partida);
                         Write($"");
                         Write($"Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
                         partida.ValidarPosicaoDeOrigem(origem);
 
                         bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
-                        Clear();
                         
+                        Clear();
                         Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        
                         Write($"");
                         Write($"Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        
                         partida.ValidarPosicaoDestino(origem, destino);
                         partida.RealizaJogada(origem, destino);
                     }
                     catch (TabuleiroException exception)
                     {
                         WriteLine(exception.Message);
+                        ReadLine();
                     }
                 }
+                Clear();
+                Tela.ImprimirPartida(partida);
             }
             catch (TabuleiroException exception)
             {

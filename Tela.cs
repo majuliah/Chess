@@ -14,12 +14,20 @@ namespace xadrez
             WriteLine();
             ImprimirPecasCapturadas(partida);
             WriteLine($"Turno: {partida.turno}");
-            WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
-
-            if (partida.xeque)
+            if (!partida.finalizada)
             {
-                WriteLine($"XEQUE!");
+                WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+                if (partida.xeque)
+                {
+                    WriteLine($"XEQUE!");
+                }
             }
+            else
+            {
+                WriteLine($"XEQUEMATE!");
+                WriteLine($"Vencedor: {partida.jogadorAtual}");
+            }
+
         }
 
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
