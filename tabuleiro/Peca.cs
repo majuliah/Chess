@@ -18,6 +18,10 @@
         public void IncrementoQtdeMovimentos()
         {
             quantidadeMovimentos++;
+        }        
+        public void DecrementoQtdeMovimentos()
+        {
+            quantidadeMovimentos--;
         }
 
         public bool ExisteMovimentosPossiveis()
