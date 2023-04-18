@@ -11,6 +11,12 @@
             this.coluna = coluna;
         }
 
+        public void DefinirValores(int lin, int col)
+        {
+            this.linha = lin;
+            this.coluna = col;
+        }
+
         public override string ToString()
         {
             return $"{linha}, {coluna}";

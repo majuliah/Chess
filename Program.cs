@@ -17,15 +17,20 @@ namespace Chess
                 {
                     Clear();
                     Tela.ImprimirTabuleiro(partida.tab);
-                    
+                    Write($"");
                     Write($"Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+
+                    bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
+                    Clear();
+                    
+                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+                    Write($"");
                     Write($"Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
                     
                     partida.ExecutaMovimento(origem, destino);
                 }
-                
             }
             catch (TabuleiroException exception)
             {
