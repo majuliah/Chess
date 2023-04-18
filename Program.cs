@@ -20,9 +20,6 @@ namespace Chess
                         Clear();    
                         Tela.ImprimirTabuleiro(partida.tab);
                         Write($"");
-                        WriteLine($"Turno: {partida.turno}");
-                        WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
-                        WriteLine();
                         Write($"Origem: ");
                         Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
                         partida.ValidarPosicaoDeOrigem(origem);
@@ -35,9 +32,7 @@ namespace Chess
                         Write($"Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
                         partida.ValidarPosicaoDestino(origem, destino);
-                        
                         partida.RealizaJogada(origem, destino);
-                        
                     }
                     catch (TabuleiroException exception)
                     {
