@@ -15,29 +15,40 @@ namespace Chess
 
                 while (!partida.finalizada)
                 {
-                    Clear();
-                    Tela.ImprimirTabuleiro(partida.tab);
-                    Write($"");
-                    Write($"Origem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+                    try
+                    { 
+                        Clear();    
+                        Tela.ImprimirTabuleiro(partida.tab);
+                        Write($"");
+                        WriteLine($"Turno: {partida.turno}");
+                        WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+                        WriteLine();
+                        Write($"Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.ValidarPosicaoDeOrigem(origem);
 
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
-                    Clear();
-                    
-                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
-                    Write($"");
-                    Write($"Destino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
-                    
-                    partida.ExecutaMovimento(origem, destino);
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).MovimentosPossiveis();
+                        Clear();
+                        
+                        Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Write($"");
+                        Write($"Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+                        partida.ValidarPosicaoDestino(origem, destino);
+                        
+                        partida.RealizaJogada(origem, destino);
+                        
+                    }
+                    catch (TabuleiroException exception)
+                    {
+                        WriteLine(exception.Message);
+                    }
                 }
             }
             catch (TabuleiroException exception)
             {
                 WriteLine(exception.Message);
-                throw;
             }
-
         }
     }
 }
